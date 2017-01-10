@@ -4,24 +4,83 @@
         <title>Juniper Networks: Contrail -- Coding Challenge</title>
         <!-- feel free to remove below link to demo.css, if you don't use it -->
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
-
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="js/vendor/jquery.mockjax.min.js"></script>
-        <!--
-            Add your allowed additional libraries/frameworks here
-            you can use CDN or local files (put them under the "vendor" folder).
-        -->
+        <style>
+            .domain,
+            .tick path,
+            .tick line {
+                fill: none;
+                stroke: #000;
+                stroke-width: 2;
+                shape-rendering: crispEdges;
+            }
+            .v-bar {
+                min-height: 1px;
+                min-width: 30px;
+                background-color: #4682b4;
+                margin-right: 2px;
+                font-size: 10px;
+                color: #f0f8ff;
+                text-align: center;
+                width: 10px;
+                display: inline-block;
+            }
+        </style>
     </head>
     <body>
-        <ul id="mockAPIResponse">
-            <!-- For demo only, feel free to remove this div during your development -->
-        </ul>
-
-        <script src="js/mockAPIs.js"></script>
-        <!--
-            The below script is for demo purpose only,
-            remove it before starting development.
-        -->
-        <script src="js/demo/demo_driver.js"></script>
+    <div id="chartPanel">
+        <svg id="chart" width="1000px" height="500px" style="background-color: #f7f8f9; margin: 100px"></svg>
+        <img id="setting" src="imgs/settings.png" class="img_set" style="position: relative;left: -200px;top: -550px;"><!--z-index: 100;-->
+    </div>
+    <div id="userPanel" class="hid">
+        <div class="center">
+            <div style="background-color: white; border-radius: 5px; width: 1000px; display: inline-block; padding: 10px; margin-top: 100px;">
+                <div class="title"><span>you can configure your data entry here</span><img id="img_close"
+                               src="imgs/close.png" style="float: right;width: 34px;margin-right:10px;margin-top: 2px;"></div>
+                <table>
+                    <!--<tr>
+                        <td class="p20"><label for="timestamp">timestamp</label></td>
+                        <td class="p80"><input id="timestamp" type="text"></td>
+                    </tr>-->
+                    <tr>
+                        <td class="p20"><label for="memory_usage">memory_usage</label></td>
+                        <td class="p80"><input id="memory_usage" type="text" class="p90"></td>
+                    </tr>
+                    <tr>
+                        <td class="p20"><label for="memory_available">memory_available</label></td>
+                        <td class="p80"><input id="memory_available" class="p90" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="p20"><label for="cpu_usage">cpu_usage</label></td>
+                        <td class="p80"><input id="cpu_usage" type="text" class="p90"></td>
+                    </tr>
+                    <tr>
+                        <td class="p20"><label>network_throughput</label></td>
+                        <td class="p80"><input id="network_throughput_in" class="p45" type="text"><input id="network_throughput_out" class="p45" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="p20"><label>network_packet</label></td>
+                        <td class="p80"><input id="network_packet_in" class="p45" type="text"><input id="network_packet_out" class="p45" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="p20"><label>errors</label></td>
+                        <td class="p80"><input class="p30" id="errors_component" type="text"><input id="errors_sensor" class="p30" type="text"><input id="errors_system" class="p30" type="text"></td>
+                    </tr>
+                </table>
+                <div style="text-align: center;line-height: 40px;">
+                    <button id="submit">submit</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/3rd/jquery-2.0.3.js"></script>
+    <script>
+        $("#userPanel").find("input").each(function (i, item) {item.name = item.id;});
+    </script>
+    <script src="js/3rd/jquery.mockjax.min.js"></script>
+    <script src="js/mockAPIs.js"></script>
+    <script src="js/3rd/d3.min.js"></script>
+    <script src="js/demo/DMGJ.js"></script>
+    <script src="js/demo/DMGJ.Chart.js"></script>
+    <script src="js/demo/demo_driver.js"></script>
+    <script src="js/demo/page.js"></script>
     </body>
 </html>
