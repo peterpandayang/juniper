@@ -1,11 +1,4 @@
-/**
- * classname
- * @author : 
- * JS only global variable
- * @description : JS only global variable
- * @date : 2016/11/29
- */
-;var DMGJ = (function () {
+var DMGJ = (function () {
 
     "use strict";
     return {
@@ -28,19 +21,20 @@
         }
     };
 }());
+
 (function ($, window, Handlebars) {
     "use strict";
     //toolbox
-    (function () {
-        DMGJ.namespace("DMGJ.tool");
-        var tool= DMGJ.tool;
+    // (function () {
+    //     DMGJ.namespace("DMGJ.tool");
+    //     var tool= DMGJ.tool;
 
-        //config field
-        tool.Constant = {
-            INSERTERROR_MSG: "insert error……"
-        };
+    //     //config field
+    //     tool.Constant = {
+    //         INSERTERROR_MSG: "insert error……"
+    //     };
 
-    }());
+    // }());
 
 
     //add tool to jQuery
@@ -238,6 +232,7 @@
         }());
     }());
 
+
     //encapsulation jquery
     (function ($) {
         "use strict";
@@ -253,4 +248,11 @@
             });
         };
     }(jQuery));
+
 }($, window));
+
+
+
+
+
+

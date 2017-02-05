@@ -1,11 +1,4 @@
-/**
- * D3Chart - v0.0.1
- * classname
- * @author : 
- * @description : 
- * @date : 2017/1/9
- */
-;(function ($,d3) {
+(function ($,d3) {
     DMGJ.namespace("DMGJ.D3Chart");
     var D3Chart = DMGJ.D3Chart;
     D3Chart.chart= (function () {
@@ -14,8 +7,8 @@
             titleOffset:[300,40],
             titleStyle:{
                 "text-anchor":'middle',
-                "font-size":40,
-                "stroke":'blue',
+                "font-size":20,
+                "stroke":'red',
                 "fill":'aqua'
             },
             type:"line",
@@ -24,28 +17,35 @@
             duration:500,
             nodeNum:20
         };
-        return function (svg,options) {
+
+        return function (svg, options) {
             if(!(this instanceof DMGJ.D3Chart.chart)){
+                // options here is the config in the chart
                 return new DMGJ.D3Chart.chart(svg,options);
             }
 
             if(typeof svg === "string"){
                 svg = "#"+svg;
             }
+
+            // get the "#chart" element from the page and store it in svg variable
             this.svg = d3.select(svg);
 
-            //defaultConfig's transform at left bottom
+            //defaultConfig's transform at bottom
             defaultConfig.transform ="translate(40," + (Number.parseInt($(svg).css("height").replace("px","")) - 20) + ")";
-            this._options= $.extend(true,{},defaultConfig,options);
 
-            this._axisBasline = Number.parseInt(this._options.transform.replace("translate(","").replace(")","")
+            this._options= $.extend(true, {}, defaultConfig, options);
+
+            this._axisBasline = Number.parseInt(this._options.transform.replace("translate(","").replace(")", "")
                 .split(",")[1],10);
+
             this._data={
                 y:[],
                 x:[]
             };
+
             //this.xAxis = this.svg.append('g');
-            //add title
+            //add title here
             this.svg.append("text")
                 .attr("transform", "translate("+this._options.titleOffset[0]+","+this._options.titleOffset[1]+")")
                 .style(this._options.titleStyle)
@@ -53,6 +53,9 @@
 
         }
     }());
+
+
+    
     $.extend(DMGJ.D3Chart.chart.prototype,{
         /**
          * data={
@@ -66,7 +69,7 @@
             var _data = this._data;
             _data.x.push(data.x);
             _data.y.push(data.y);
-            //total 15 nodes
+            //total 20 nodes
             if(_data.x.length > this._options.nodeNum){
                 let len = _data.x.length;
                 _data.x = _data.x.slice(len - this._options.nodeNum);
@@ -88,6 +91,7 @@
         _renderAxis: function (axis, transform) {
             this.svg.append("g")
                 .attr("transform", transform)
+                .style("font-size","10px")
                 .call(axis);
         },
         _renderAxisWidthScale:function () {
@@ -122,7 +126,7 @@
         _renderLine: function () {
             var _data = this._data,
                 self = this;
-            //获取scale
+            //get scale
             this.xScale = this._xScale([_data.x[0],_data.x[_data.x.length-1]]);//_data.x[0]
             this.yScale = this._yScale((function () {
                 var ydata = _data.y,
@@ -174,12 +178,15 @@
                             "stroke": self._options.chartColor(i),
                             'stroke-width':2
                         });
+                    // console.log(_data.y);
+                    // console.log(self._options.chartColor(i));
                 });
             }
 
             this._renderDots(dataset);
 
         },
+        
         _renderBar: function () {
             //pile data
             var dataset = [],
@@ -265,3 +272,7 @@
         }
     });
 }($,d3));
+
+
+
+

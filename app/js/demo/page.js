@@ -1,4 +1,4 @@
-;(function ($) {
+(function ($) {
     $(function () {
         $("#setting").click(function () {
             $("#userPanel").show();
@@ -7,6 +7,7 @@
             $("#userPanel").hide();
         });
     });
+    
     $("#submit").click(function () {
         var userdata={
             form:new Date(),
@@ -37,3 +38,8 @@
         });
     });
 }($));
+
+
+
+
+

@@ -25,16 +25,33 @@
                 display: inline-block;
             }
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var lines = ["errors.component", "errors.sensor", "errors.system", "memory_available", "memory_usage", "network_packet.in", "network_packet.out", "network_throughput.in", "network_throughput.out"];
+                $("#chart").mouseover(function(){
+                    var path = chart.children;
+                    $("path").mouseover(function(event){
+                        var index = this.className.baseVal.charAt(4);
+                        if(index >= 1 && index <= 9){
+                            $("span").text(lines[index - 1]).css({top: event.pageY, left: event.pageX, position:'absolute'});;
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
+
     <div id="chartPanel">
+        <span style="z-index: 100"></span>
         <svg id="chart" width="1000px" height="500px" style="background-color: #f7f8f9; margin: 100px"></svg>
-        <img id="setting" src="imgs/settings.png" class="img_set" style="position: relative;left: -200px;top: -550px;"><!--z-index: 100;-->
+        <img id="setting" src="imgs/settings.png" class="img_set" style="position: relative;left: 450px;top: -600px;"><!--z-index: 100;-->
     </div>
     <div id="userPanel" class="hid">
         <div class="center">
             <div style="background-color: white; border-radius: 5px; width: 1000px; display: inline-block; padding: 10px; margin-top: 100px;">
-                <div class="title"><span>you can configure your data entry here</span><img id="img_close"
+                <div class="title"><span>You can configure your data entry here</span><img id="img_close"
                                src="imgs/close.png" style="float: right;width: 34px;margin-right:10px;margin-top: 2px;"></div>
                 <table>
                     <!--<tr>

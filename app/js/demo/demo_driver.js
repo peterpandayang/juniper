@@ -93,10 +93,10 @@
             titleStyle:{
                 "text-anchor":'middle',
                 "font-size":40,
-                "stroke":'red',
+                "stroke":'blue',
                 "fill":'aqua'
             },
-            type:"bar",
+            type:"line",
             markerColor:d3.scale.category20c(),//d3.scale.category20c
             chartColor:d3.scale.category20c(),//d3.scale.category20c
             duration:500,
@@ -106,3 +106,5 @@
 
     df.start();
 })();
+
+
